@@ -12,8 +12,8 @@ const getById = async (id) => {
   return User.findByPk(id);
 };
 
-const create = async ({ id, name }) => {
-  return User.create({ id, name });
+const create = async ({ name }) => {
+  return User.create({ name });
 };
 
 const update = async ({ id, name }) => {

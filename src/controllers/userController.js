@@ -47,12 +47,16 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const updated = await userService.update({ id, ...req.body });
 
-    if (updated[0] === 0) {
-      // Sequelize returns [0] if no rows updated
+    // Check if the user exists before trying to update
+    const user = await userService.findById(id);
+
+    if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
+
+    // If user exists, update the user and return a success message
+    await userService.update({ id, ...req.body });
 
     res.status(200).json({ message: 'User updated successfully' });
   } catch (error) {
@@ -65,9 +69,10 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const deleted = await userService.remove(id);
 
-    if (!deleted) {
+    const deletedRows = await userService.remove(id);
+
+    if (deletedRows === 0) {
       return res.status(404).json({ message: 'User not found' });
     }
 

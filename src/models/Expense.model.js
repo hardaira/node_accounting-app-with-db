@@ -6,6 +6,10 @@ const { sequelize } = require('../db.js');
 const Expense = sequelize.define(
   'Expense',
   {
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
     userId: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,9 +37,9 @@ const Expense = sequelize.define(
   },
   {
     tableName: 'expenses',
-    // timestamps: true,
-    // createdAt: 'created_at',
-    // updatedAt: false,
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
   },
 );
 
