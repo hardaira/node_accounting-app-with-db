@@ -36,6 +36,7 @@ const createUser = async (req, res) => {
   try {
     const newUser = await userService.create(req.body);
 
+    // newUser.save();
     res.status(201).json(newUser);
   } catch (error) {
     // console.error('Error creating user:', error);
@@ -49,7 +50,7 @@ const updateUser = async (req, res) => {
     const { id } = req.params;
 
     // Check if the user exists before trying to update
-    const user = await userService.findById(id);
+    const user = await userService.getById(id);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });

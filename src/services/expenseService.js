@@ -20,7 +20,7 @@ const getAll = async (queryParams) => {
     const startDate = new Date(from);
     const endDate = new Date(to);
 
-    whereCondition.spentAt = {
+    whereCondition.createdAt = {
       [Op.between]: [startDate, endDate],
     };
   }
