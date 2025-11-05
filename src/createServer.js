@@ -8,8 +8,8 @@ const createServer = () => {
   const app = express();
 
   app.use(express.json());
-  app.use('/api/users', userRoutes);
-  app.use('/api/expenses', expenseRoutes);
+  app.use('/users', userRoutes);
+  app.use('/expenses', expenseRoutes);
 
   // // Optional: 404 handler
   // app.use((req, res) => {

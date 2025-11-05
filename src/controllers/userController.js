@@ -34,6 +34,12 @@ const getUserById = async (req, res) => {
 // Create new user
 const createUser = async (req, res) => {
   try {
+    const { name } = req.body;
+
+    if (!name) {
+      return res.status(400).json({ message: 'Bad request' });
+    }
+
     const newUser = await userService.create(req.body);
 
     // newUser.save();
